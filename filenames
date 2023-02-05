@@ -1,0 +1,8 @@
+#!/bin/bash
+
+rm media/DELETEME
+for file in ./media/*
+do
+	echo "$file" >> ./text-files/medialist.txt
+done
+
