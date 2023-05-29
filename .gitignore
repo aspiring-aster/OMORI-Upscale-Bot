@@ -161,3 +161,8 @@ cython_debug/
 
 *.png
 *png
+*.gif
+*gif
+./text-files/key.txt
+./media/*.gif
+./media*.png
