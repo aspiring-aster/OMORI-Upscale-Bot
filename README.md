@@ -30,3 +30,8 @@ Source code for the OMORI Upscale Bot implemented in Python using the [Tweepy mo
 - <code>python main.py -deploy cronjob</code> 
 - if you want to run the py file as a script you can also do <code>./main.py -deploy cronjob</code>
   - Make sure you have executable privileges for <code>main.py</code> if you want to run it as above. If not the first way works just fine! 
+
+
+### READ THIS IF YOU WANT TO UPSCALE YOURSELF
+This isn't what I use to upscale the images. This is how I manage the bot. 
+I followed [this guide](https://upscale.wiki/wiki/Installing_ESRGAN_and/or_BasicSR_on_Arch_Linux) to get started and through trial and error I developed my own system for upscales built off of this.
