@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# You can add this script to your path and use a cronjob to run it
+
+# cd into the directory that has the bot mainpy. For me I called it test
+cd ~/test
+
+# run the main.py I use deploy = as cronjob as default but change it to loop if you want! Just make sure to no make a cronjob to run the loop!
+python3 ./main.py -deploy reply
+python3 ./main.py -deploy like

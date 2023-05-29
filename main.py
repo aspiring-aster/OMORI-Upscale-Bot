@@ -2,56 +2,47 @@
 import argparse
 from time import sleep
 from pyfiles.botmethods import Bot
+from pyfiles.database import populateTable
 from os import system
 
-# MAKE SURE TO POPULATE MEDIA BEFORE TWEETING
+"""
+Make sure if you don't have a ./pyfiles/image.db file run the make-database
+command before trying to tweet!
+"""
 
-# 1) USE THIS IF USING A CRONJOB TO DEPLOY:
-def cronJobDeploy():
-    bot = Bot()
-    bot.populateMedia()
-    bot.makeTweet()
-    bot.replyToTweet()
-    bot.likeMentions()
+bot = Bot()
 
-# 2 USE THIS IF USING A INFINTE LOOP TO DEPLOY:
+# USE THIS IF USING A INFINTE LOOP TO DEPLOY:
 def loopDeploy():
-    bot = Bot()
-    bot.populateMedia()
     running = True
     while running:
         bot.makeTweet()
         # 3600 seconds = 1 hour
         sleep(3600)
 
-def testReply():
-    bot = Bot()
-    bot.populateMedia()
-    bot.replyToTweet()
-
-# Like and Reply
-def like():
-    bot = Bot()
-    bot.populateMedia()
-    bot.replyToTweet()
-    bot.likeMentions()
-
 """
+
 Function to parse cli arguments mainly for getting the type of deployment
+
 """
 def parseArgs():
     parser = argparse.ArgumentParser(prog="Tweepy-Media-Bot", description="Tweets and Likes Media in a automated fasion")
-    parser.add_argument("-deploy", type=str, required=True)
+    parser.add_argument("-deploy", choices=("cronjob", "loop", "reply", "like"))
+    parser.add_argument("-make-database", type=int, default=0)
     args = parser.parse_args()
     return args
 
 def main(args):
     if (args.deploy == "cronjob"):
-        cronJobDeploy()
+        bot.makeTweet()
     elif (args.deploy == "loop"):
         loopDeploy()
+    elif (args.deploy == "reply"):
+        bot.reply()
     elif (args.deploy == "like"):
-        like()
+        bot.likeMentions()
+    if (args.make_database != 0):
+        populateTable()
 
 if __name__ == "__main__":
     main(parseArgs())
